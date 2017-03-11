@@ -12,87 +12,70 @@
 		
 	</ol>
 
+	<br/><br/>以上数据纯属个人捏造
 
 	<script type="text/javascript">
 		
-	var aqiData=[
-		["北京",150],
-		["上海",50],
-		["福州",10],
-		["广州",50],
-		["成都",90],
-		["西安",100],
-		["长沙",30],
-		["石家庄",130],
-		["武汉",40],
-		["南京",80],
-		["天津",110],
-		["重庆",20]
-	];
+		var aqiData=[
+			["北京",150],
+			["上海",50],
+			["福州",10],
+			["广州",50],
+			["成都",90],
+			["西安",100],
+			["长沙",30],
+			["石家庄",130],
+			["武汉",40],
+			["南京",80],
+			["天津",110],
+			["重庆",20]
+		];
 
-	window.alert(aqiData.length);
+		
 
-	get();
+		get();
 
 
-	function get(){
-		var degree=new Array;
-		var ex_degree;
-		for(var i=0;i<aqiData.length;i++){
-			ex_degree=(aqiData[i][1]);
-			if(ex_degree-60>0){
-				degree.push(aqiData[i]);
+		function get(){
 
-				//document.getElementById("list").innerHTML+=("<li>"+aqiData[i]+"</li>");
+			var degree=new Array;
+			var ex_degree;
+			
+			/*以下代码用于找出污染指数大于60的城市*/
+			for(var i=0;i<aqiData.length;i++){
+				
+				ex_degree=(aqiData[i][1]);
+				
+				if(ex_degree-60>0){
+					degree.push(aqiData[i]);
+				}
+
 			}
 
-		}
-		//document.write(degree+"<br/>");
 
-		var temp=0;
-		for(var i=0;i<degree.length-1;i++){
-			for(var j=0;j<degree.length-i-1;j++){
-				if(degree[j][1]<degree[j+1][1]){
-					temp=degree[j][1];
-					degree[j][1]=degree[j+1][1];
-					degree[j+1][1]=temp;
+			/*以下代码用于将筛选出的城市按照顺序排列*/
+			for(var i=0;i<degree.length-1;i++){
+
+				for(var j=0;j<degree.length-i-1;j++){
+				
+					if(degree[j][1]<degree[j+1][1]){
+				
+						var temp=degree[j][1];
+						degree[j][1]=degree[j+1][1];
+						degree[j+1][1]=temp;
+				
+					}
 				}
 			}
+
+			/*以下代码用于将符合要求的城市显示在页面上*/
+			for(var i=0;i<degree.length;i++){
+				document.getElementById("list").innerHTML+=("<li>&nbsp;"+degree[i]+"</li>");
+			}
 		}
-
-		document.write(degree);
-
-		window.alert("12");
-		for(var i=0;i<degree.length;i++){
-			document.getElementById("list").innerHTML+=("<li>&nbsp;"+degree[i]+"</li>");
-		}
-
-	}
-
-		//bulu(degree[][1]);
-		//document.write(degree);
-	//var arr1=[1,2,6,4,8,3];
-	//bulu(arr1);
-
-
- 	function bulu(arr){
- 		var temp=0;
- 		for(var i=0;i<arr.length-1;i++){
- 			for(var j=0;j<arr.length-i-1;j++){
- 				if(arr[j]<arr[j+1]){
- 					temp=arr[j];
- 					arr[j]=arr[j+1];
- 					arr[j+1]=temp;
- 				}
- 			}
- 		}
- 		document.write(arr1);
- 	}
 
 
 	</script>
-
-
 
 </body>
 </html>
