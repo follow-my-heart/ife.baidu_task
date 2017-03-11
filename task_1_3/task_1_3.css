@@ -1,0 +1,55 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+.style0{
+	margin:20px;
+	padding:20px;
+	border:1px solid #999;
+	background:#eee;
+	overflow:auto;
+}
+
+.style1{
+	border:1px solid #999;
+	width:180px;
+	height:100px;
+	float:left;
+	padding:20px 0px 0px 20px;
+	background:white;
+}	
+
+.myspan{
+	float:right;
+	margin-right:10px;
+}
+
+
+
+.style2{
+	border:1px solid #999;
+	clear:none;
+	background:white;
+	padding:16px;
+	margin-left:220px;
+	margin-right:140px;
+}
+
+.style3{
+	border:1px solid #999;
+	width:120px;
+	height:404px;
+	float:right;
+	background:white;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+}
+
+.style3 ul{
+	padding:12px 20px 12px 20px;
+	list-style-type:none;
+}
+
+.style3 ul li{
+	margin-top:10px;
+	margin-bottom:8px;
+}
