@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>task_2_2</title>
+</head>
+<body>
+
+	<h3>污染城市列表</h3>
+
+	<ol id="list">
+		
+	</ol>
+
+
+	<script type="text/javascript">
+		
+	var aqiData=[
+		["北京",150],
+		["上海",50],
+		["福州",10],
+		["广州",50],
+		["成都",90],
+		["西安",100],
+		["长沙",30],
+		["石家庄",130],
+		["武汉",40],
+		["南京",80],
+		["天津",110],
+		["重庆",20]
+	];
+
+	window.alert(aqiData.length);
+
+	get();
+
+
+	function get(){
+		var degree=new Array;
+		var ex_degree;
+		for(var i=0;i<aqiData.length;i++){
+			ex_degree=(aqiData[i][1]);
+			if(ex_degree-60>0){
+				degree.push(aqiData[i]);
+
+				//document.getElementById("list").innerHTML+=("<li>"+aqiData[i]+"</li>");
+			}
+
+		}
+		//document.write(degree+"<br/>");
+
+		var temp=0;
+		for(var i=0;i<degree.length-1;i++){
+			for(var j=0;j<degree.length-i-1;j++){
+				if(degree[j][1]<degree[j+1][1]){
+					temp=degree[j][1];
+					degree[j][1]=degree[j+1][1];
+					degree[j+1][1]=temp;
+				}
+			}
+		}
+
+		document.write(degree);
+
+		window.alert("12");
+		for(var i=0;i<degree.length;i++){
+			document.getElementById("list").innerHTML+=("<li>&nbsp;"+degree[i]+"</li>");
+		}
+
+	}
+
+		//bulu(degree[][1]);
+		//document.write(degree);
+	//var arr1=[1,2,6,4,8,3];
+	//bulu(arr1);
+
+
+ 	function bulu(arr){
+ 		var temp=0;
+ 		for(var i=0;i<arr.length-1;i++){
+ 			for(var j=0;j<arr.length-i-1;j++){
+ 				if(arr[j]<arr[j+1]){
+ 					temp=arr[j];
+ 					arr[j]=arr[j+1];
+ 					arr[j+1]=temp;
+ 				}
+ 			}
+ 		}
+ 		document.write(arr1);
+ 	}
+
+
+	</script>
+
+
+
+</body>
+</html>
