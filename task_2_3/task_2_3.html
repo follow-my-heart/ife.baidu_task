@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>task_2_3</title>
+	</head>
+<body>
+
+
+
+	<ul id="source">
+		<li>北京空气质量：<b>90</b></li>
+		<li>上海空气质量：<b>70</b></li>
+		<li>天津空气质量：<b>80</b></li>
+		<li>广州空气质量：<b>50</b></li>
+		<li>深圳空气质量：<b>40</b></li>
+		<li>福州空气质量：<b>32</b></li>
+		<li>成都空气质量：<b>90</b></li>		
+	</ul>
+
+
+	<ul id="resort">
+
+	</ul>
+
+
+
+	<button id="sot-btn" onclick="init()">排序</button>
+
+
+
+	<script type="text/javascript">
+
+	
+		function getData(){
+
+			var data=new Array;
+
+			obj=document.getElementById("source");
+
+			obj1=obj.getElementsByTagName("li");
+
+			for(var i=0;i<obj1.length;i++){
+			
+				data[i]=new Array;
+				data[i][0]=obj1[i].innerText.slice(0,2);
+
+				var myReg=/(\d+)/gi;//获取字符串中数字的正则表达式
+				var con=obj1[i].innerText;
+				
+				data[i][1]=(myReg.exec(con))[0];	
+			}
+
+			return data;
+		}
+
+
+		function sortAqiData(data){
+
+			for(var i=0;i<data.length-1;i++){
+				for(var j=0;j<data.length-i-1;j++){
+					
+					if(data[j][1]<data[j+1][1]){
+					
+						var temp=data[j];
+						data[j]=data[j+1];
+						data[j+1]=temp;
+					
+					}
+				}	
+			}	
+			return data;
+		}
+
+
+		function render(data){
+
+			for(var i=0;i<data.length;i++){
+
+				obj=document.getElementById("resort");
+				obj.innerHTML+=("<li>&nbsp;第"+(i+1)+"名 "+data[i][0]+"空气质量：<b>"+data[i][1]+"</b></li>");
+			}
+		}
+
+
+		function btnHandle(){
+
+			var aqiData=getData();
+
+			aqiData=sortAqiData(aqiData);
+
+			render(aqiData);
+		}
+
+
+		function init(){
+
+			document.getElementById("sot-btn").addEventListener("click", btnHandle);	
+
+		}
+
+	</script>
+</body>
+</html>
