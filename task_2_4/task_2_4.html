@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task_2_4</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="task_2_4.css"/>
+</head>
+<body>
+
+	<input type="text" id="input"/>
+
+	<input type="button" id="left_in" value="左输入" onclick="btn_in(this)"/>
+	<input type="button" id="right_in" value="右输入" onclick="btn_in(this)"/>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+	<input type="button" id="left_out" value="左侧出" onclick="btn_out(this)"/>
+	<input type="button" id="right_out" value="右侧出" onclick="btn_out(this)"/>
+
+	<br/><br/>
+
+
+	<div id="div1"></div>
+
+
+
+
+	<script type="text/javascript">
+
+
+	function btn_in(obj){
+
+		txt=document.getElementById("input");
+
+		myspan=document.getElementById("div1");
+
+		var myElement=document.createElement("span");
+
+		myElement.innerText=txt.value;
+
+		myElement.addEventListener("click",remove);
+		
+		if(obj.id=="left_in"){
+
+			myspan.insertBefore(myElement,myspan.childNodes[0]); 
+
+		}else if(obj.id=="right_in"){
+
+			myspan.appendChild(myElement);
+		}
+
+		txt.value="";
+	}
+
+
+	function remove(){
+		
+		myspan.removeChild(this);
+	}
+
+
+
+	function btn_out(obj){
+
+		myspan=document.getElementById("div1");
+
+		if(obj.id=="left_out"){
+
+			myspan.removeChild(myspan.childNodes[0]);
+
+		}else if(obj.id=="right_out"){
+
+			var n=myspan.childNodes.length;
+			myspan.removeChild(myspan.childNodes[n-1]);
+		}
+	}
+	
+	</script>
+</body>
+</html>
