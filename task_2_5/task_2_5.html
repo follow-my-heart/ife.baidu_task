@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task_2_5</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="task_2_5.css"/>
+</head>
+<body>
+
+	<input type="text" id="input"/>
+
+	<input type="button" id="left_in" value="左输入" onclick="btn_in(this)"/>
+	<input type="button" id="right_in" value="右输入" onclick="btn_in(this)"/>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+	<input type="button" id="left_out" value="左侧出" onclick="btn_out(this)"/>
+	<input type="button" id="right_out" value="右侧出" onclick="btn_out(this)"/>
+
+	<br/><br/>
+
+	<!--以下两个div第一个用来存放数字，第二个用来存放矩形图-->
+	<div id="div1"></div>
+
+	<div id="div2"></div>
+
+
+
+	<script type="text/javascript">
+	/*使用n来统计输入的数字，实时增减*/
+	var n=0;
+	/*data数组用来存放输入的数字，实时增减*/
+	var data=new Array;
+	
+	/*实现按钮输入有效数字并显示其高度的矩形图*/
+	function btn_in(obj){
+
+		txt=document.getElementById("input");
+		myspan=document.getElementById("div1");
+
+
+		/*确保输入的内容是数字并在10和100之间*/
+		if(txt.value>=10&txt.value<=100){
+			
+			if(n>59){
+
+				window.alert("你已经输入了60个数字，不要再输了！！");
+				return false;
+
+			}else{
+
+				var myElement=document.createElement("span");
+				myElement.innerText=txt.value;
+				myElement.addEventListener("click",remove);
+
+				/*对dada实时增加*/
+				data.push(txt.value);
+				myspan2=document.getElementById("div2");
+				var newSpan=document.createElement("span");
+
+				/*判断按钮是左输入还是右输入*/
+				if(obj.id=="left_in"){
+
+					myspan.insertBefore(myElement,myspan.childNodes[0]); 
+					myspan2.insertBefore(newSpan,myspan2.childNodes[0])
+					myspan2.childNodes[0].style.paddingTop=txt.value+"px";
+					
+
+				}else if(obj.id=="right_in"){
+
+					myspan.appendChild(myElement);
+					myspan2.appendChild(newSpan);
+					var nodesLength1=myspan.childNodes.length;
+					myspan2.childNodes[nodesLength1-1].style.paddingTop=txt.value+"px";
+			
+				}
+				
+			txt.value="";
+			n++;
+			}
+		}else{
+			return false;
+		}
+	}
+
+	/*此函数实现点击某数字删除自身并删除对应的矩形图，还有数组中的元素*/
+	function remove(){
+
+
+		for(var i=0;i<myspan.childNodes.length;i++){
+			if(myspan.childNodes[i]==this){
+				var myNum=i;
+			}
+		}
+
+		myspan2.removeChild(myspan2.childNodes[myNum]);
+		myspan.removeChild(this);
+		data.slice(myNum,1);
+
+	
+		n-=1;
+		
+	}
+
+
+	/*从左边或者右边删除元素*/
+	function btn_out(obj){
+
+		myspan=document.getElementById("div1");
+
+		if(obj.id=="left_out"){
+			myspan.removeChild(myspan.childNodes[0]);
+			myspan2.removeChild(myspan2.childNodes[0]);
+			data.slice(0,1);
+			
+		}else if(obj.id=="right_out"){
+			var nodesLength2=myspan.childNodes.length;
+			myspan.removeChild(myspan.childNodes[nodesLength2-1]);	
+			myspan2.removeChild(myspan2.childNodes[nodesLength2-1]);	
+			data.slice(nodesLength2-1,1);
+		}
+	
+		n-=1;
+	
+	}
+
+	</script>
+</body>
+</html>
