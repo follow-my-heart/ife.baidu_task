@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task_3_1</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="task_3_1.css">
+</head>
+<body>
+	<br/><br/>
+	<span>名称</span>
+	
+	<input type="text" id="input" class="input-class" />
+	
+	&nbsp;&nbsp;
+
+	<input type="button" value="验证" class="check" onclick="submit()" />
+	<div id="mydiv"></div>
+
+
+	<script type="text/javascript">
+		//全局变量，统计字符总数
+		var total;
+		function submit(){
+			var txt=document.getElementById("input");
+			var str=txt.value;
+			var ch=0;
+			var en=0;
+			var myReg=/\w{1}/gi;
+			var res;
+			for(var i=0;i<str.length;i++){
+				var a=str[i];
+				res=a.match(myReg);
+				if(res==null){
+					ch++;
+				}else{
+					en++;
+				}
+			}
+
+			total=en+ch*2;
+			compare();
+		}
+
+		function compare(){
+			var txt2=document.getElementById("mydiv");
+			var style1=document.getElementById("input");
+
+			if(total==0){
+				txt2.innerText="姓名不能为空";
+				txt2.style.color="red";
+				style1.style.borderColor="red";
+
+
+			}else if(total<=16&&total>=4){
+				txt2.innerText="名称格式正确";
+				txt2.style.color="#5EBB46";
+				style1.style.borderColor="#5EBB46";
+			}else{
+				txt2.innerText="必填，长度为4~16个字符";
+				txt2.style.color="gray";
+				style1.style.borderColor="gray";
+			}
+		}
+
+
+	</script>
+</body>
+</html>

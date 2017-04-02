@@ -1,0 +1,22 @@
+span{
+	font:bold 16px/25px "微软雅黑";
+
+}
+#input{
+	height:25px;
+	border:1px solid gray;
+}
+.check{
+	width:50px;
+	height:35px;
+	font-size:16px;
+	color:#fff;
+	background:blue;
+	cursor:pointer;
+}
+#mydiv{
+	padding-left:30px;
+	margin-top:5px;
+	font:16px "微软雅黑";
+	color:gray;
+}
