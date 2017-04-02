@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task_2_6</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="task_2_6.css"/>
+</head>
+<body>
+
+	<textarea id="input"></textarea>
+
+
+	<br/><br/>
+	<input type="text" id="lookUp"/><input type="button" value="查询" onclick="test()" />
+
+	<br/><br/>
+
+
+	<script type="text/javascript">
+
+		function test(){
+			var txt=document.getElementById("input");
+			var txt_string=txt.value;
+
+			var txt2=document.getElementById("lookUp");
+			var toLook=txt2.value;
+
+			var myReg=new RegExp("\\w*"+toLook+"\\w*","gi");
+
+			var res=txt_string.match(myReg);
+			for(var i=0;i<res.length;i++){
+				
+				var string2=txt_string.replace(res[i],"换");
+				txt_string=string2;
+				txt.value=string2;
+			}
+
+		}
+
+
+	</script>
+</body>
+</html>
