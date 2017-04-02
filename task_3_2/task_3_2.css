@@ -1,0 +1,26 @@
+span{
+	margin-left:100px;
+	margin-right:20px;
+	font:bold 16px/25px "微软雅黑";
+}
+.span1{
+	margin-left:70px;
+}
+input{
+	width:300px;
+	height:30px;
+	margin-right:13%;
+	border:1px solid #ccc;
+	border-radius:5px;
+	/*margin-left:13%;*/
+}
+div{
+	margin:2px auto auto 150px;
+}
+#submit{
+	width:70px;
+	margin-left:380px;
+	color:#fff;
+	cursor:pointer;
+	background:#2F79BA;
+}

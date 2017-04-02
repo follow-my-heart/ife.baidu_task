@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task_3_2</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="task_3_2.css">
+</head>
+<body>
+	<span>名称</span><input type="text" id="name" onfocus="demand1()" onblur="check1()" />
+	<div id="div1"></div>
+	<br/>
+
+	<span>密码</span><input type="password" id="pwd" onfocus="demand2()" onblur="check2()"/>
+	<div id="div2"></div>
+	<br/>
+
+	<span class="span1">密码确认</span><input type="password" id="pwd1" onfocus="demand3()" onblur="check3()"/>
+	<div id="div3"></div>
+	<br/>
+
+	<span>邮箱</span><input type="text" id="mail" onfocus="demand4()" onblur="check4()"/>
+	<div id="div4"></div>
+	<br/>
+
+	<span>手机</span><input type="text" id="phoneNumber" onfocus="demand5()" onblur="check5()"/>
+	<div id="div5"></div>
+	<br/>
+
+	<input type="submit" id="submit" onclick="submitAll()" />
+	<div id="div6"></div>
+	<br/>
+
+	<script type="text/javascript">
+		//名称要求及查验
+		function demand1(){
+			var txt=document.getElementById("div1");
+			txt.innerText="必填，长度为4~16个字符";
+			txt.style.color='gray';
+		}
+		function check1(){
+			var txt=document.getElementById("div1");
+			var txt2=document.getElementById("name");
+			length1=length(txt2.value);
+			if(length1==0){
+				txt.innerText="名称不能为空";
+				txt.style.color='red';
+				txt2.style.borderColor='red';
+				
+			}else if(length1<17&&length1>3){
+				txt.innerText="名称格式正确";
+				txt.style.color="#5EBB46";
+				txt2.style.borderColor="#5EBB46";
+				return true;
+			}
+		}
+
+		//密码要求及查验
+		function demand2(){
+			var txt=document.getElementById("div2");
+			//var txt2=document.getElementById("pwd");
+			txt.innerText="必填，输入密码";
+			txt.style.color='gray';
+		}
+		function check2(){
+			var txt=document.getElementById("div2");
+			var txt2=document.getElementById("pwd");
+			if(txt2.value==0){
+				txt.innerText='密码不能为空';
+				txt.style.color='red';
+				txt2.style.borderColor='red';
+
+			}else{
+				txt.innerText="密码可用";
+				txt.style.color="#5EBB46";
+				txt2.style.borderColor="#5EBB46";
+				return true;
+			}
+		}
+		function demand3(){
+			var txt=document.getElementById("div3");
+			//var txt2=document.getElementById("pwd");
+			txt.innerText="再次输入相同密码";
+			txt.style.color='gray';
+		}
+		function check3(){
+			var txt=document.getElementById("div3");
+			var txt2=document.getElementById("pwd1");
+			var txt3=document.getElementById('pwd');
+			if(txt2.value==0){
+				txt.innerText='密码不能为空';
+				txt.style.color='red';
+				txt2.style.borderColor='red';
+			}else if(txt2.value!=txt3.value){
+				txt.innerText='前后密码不一致';
+				txt.style.color='red';
+				txt2.style.borderColor='red';
+			}else{
+				txt.innerText="密码输入一致";
+				txt.style.color="#5EBB46";
+				txt2.style.borderColor="#5EBB46";
+				return true;
+			}
+		}
+
+		//邮箱要求及查验
+		function demand4(){
+			var txt=document.getElementById("div4");
+			txt.innerText="输入邮箱账号";
+			txt.style.color='gray';
+		}
+		function check4(){
+			var txt=document.getElementById("div4");
+			var txt2=document.getElementById("mail");
+			if(txt2.value==0){
+				txt.innerText='邮箱不能为空';
+				txt.style.color='red';
+				txt2.style.borderColor='red';
+				return false;
+			}
+			var myReg=/\w+@\w+\.(com|cn|net)/gi;
+			var res=myReg.exec(txt2.value);
+			if(res==null){
+				txt.innerText='邮箱格式错误';
+				txt.style.color='red';
+				txt2.style.borderColor='red';
+			}else{
+				txt.innerText="邮箱格式合格";
+				txt.style.color="#5EBB46";
+				txt2.style.borderColor="#5EBB46";
+				return true;
+			}
+		}
+
+		//手机号码要求及查验
+		function demand5(){
+			var txt=document.getElementById("div5");
+			txt.innerText="输入电话号码";
+			txt.style.color='gray';
+		}
+		function check5(){
+			var txt=document.getElementById("div5");
+			var txt2=document.getElementById("phoneNumber");
+			if(txt2.value==0){
+				txt.innerText='邮箱不能为空';
+				txt.style.color='red';
+				txt2.style.borderColor='red';
+			}
+			var myReg=/1\d{10}/gi;
+			var res=myReg.exec(txt2.value);
+			if(res==null){
+				txt.innerText='电话号码格式错误';
+				txt.style.color='red';
+				txt2.style.borderColor='red';
+			}else{
+				txt.innerText="邮箱格式合格";
+				txt.style.color="#5EBB46";
+				txt2.style.borderColor="#5EBB46";
+				return true;
+			}
+		}
+
+		//页面提交及查验
+		function submitAll(){
+			var a1=check1();
+			var a2=check2();
+			var a3=check3();
+			var a4=check4();
+			var a5=check5();
+			if((a1&&a2&&a3&&a4&&a5)==true){
+				window.alert('提交成功');
+				return true;
+			}else{
+				window.alert('输入有误');
+				return false;
+			}
+		}
+
+
+		function length(obj){
+			var total=0;
+			if(obj==null){
+				return 0;
+			}else{
+				for(var i=0;i<obj.length;i++){
+					var myReg=/[^x00-\xff]/gi;
+					var res=obj[i].match(myReg);
+					if(res==null){
+						total+=1;
+					}else{
+						total+=2;
+					}
+				}
+				return total;
+			}
+		}
+
+
+	</script>
+</body>
+</html>
