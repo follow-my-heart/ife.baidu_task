@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task_3_3</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="task_3_3.css">
+</head>
+<body>
+	<input type="radio" name="school" value="在校生" onclick="school(this)" checked/>在校生
+	<input type="radio" name="school" value="非在校生" onclick="school(this)"  />非在校生
+
+	<div id="div1">学校
+		<select id="city" onchange="chooseCollege(this)">
+			<option value="北京">北京</option>
+			<option value="天津">天津</option>
+			<option value="湖南">湖南</option>
+		</select>
+		
+		
+		<select id="beijing">
+			<option value="清华大学">清华大学</option>
+			<option value="北京大学">北京大学</option>
+			<option value="中国地质大学">中国地质大学</option>
+			<option value="中国邮电大学">中国邮电大学</option>
+		</select>
+
+		<select id="tianjin">
+			<option value="天津大学">天津大学</option>
+			<option value="南开大学">南开大学</option>
+			<option value="河北理工大学">河北理工大学</option>
+		</select>
+
+		<select id="hunan">
+			<option value="中南大学">中南大学</option>
+			<option value="湖南大学">湖南大学</option>
+			<option value="湖南师范大学">湖南师范大学</option>
+		</select>
+
+	</div>
+
+	<div id="div2">
+		就业单位
+		<input type="text" id="work-place">
+
+	</div>
+
+	<script type="text/javascript">
+
+		function school(obj){
+			var school=document.getElementsByName("school");
+			var isSchool=document.getElementById("div1");
+			var notSchool=document.getElementById("div2");
+			if(obj.value=='在校生'){
+				isSchool.style.display='block';
+				notSchool.style.display='none';
+			}else{
+				isSchool.style.display='none';
+				notSchool.style.display='block';
+			}
+		}
+
+		function chooseCollege(obj){
+			var city1=document.getElementById("beijing");
+			var city2=document.getElementById("tianjin");
+			var city3=document.getElementById("hunan");
+			var index=obj.selectedIndex;
+			//window.alert(obj.options[index].value);
+			if(obj.options[index].value=="北京"){
+				city1.style.display='inline';
+				city2.style.display='none';
+				city3.style.display='none';
+			}else if(obj.options[index].value=="天津"){
+				city1.style.display='none';
+				city2.style.display='inline';
+				city3.style.display='none';
+			}else{
+				city1.style.display='none';
+				city2.style.display='none';
+				city3.style.display='inline';
+			}
+		}
+
+
+	</script>
+
+</body>
+</html>
