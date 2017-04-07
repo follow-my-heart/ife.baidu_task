@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>听话的方块</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="task_3_4.css">
+</head>
+<body>
+	<p>纯左移请输入“TRA LEF”</p>
+	<p>纯右移请输入“TRA RIG”</p>
+	<p>纯下移请输入“TRA BOT”</p>
+	<P>纯上移请输入“TRA TOP”</P>
+
+	<P>方向距离都左移请输入“MOV LEF”</P>
+	<P>方向距离都右移请输入“MOV RIG”</P>
+	<P>方向距离都下移请输入“MOV BOT”</P>
+	<P>方向距离都上移请输入“MOV TOP”</P>
+	<div id="square"><img src="1.jpg" id="img" /></div>
+
+
+	<input type="text" id="input"/>
+	<input type="button" value="执行" onclick="getinstru()" />
+
+	<script type="text/javascript">
+
+
+		function getinstru(){
+			var input=document.getElementById("input");
+		
+			var position=document.getElementById('img');
+			var positionLeft=window.getComputedStyle(position,"").left;
+			var positionTop=window.getComputedStyle(position,"").top;
+	
+			var str=document.getElementById('img').src;
+			var str1=str.substr(-5);
+
+			var x=parseInt(positionLeft);
+			var y=parseInt(positionTop);
+			
+			str1=parseInt(str1);
+
+			if(input.value=='TRA LEF'){
+				x-=40;
+			}else if(input.value=='TRA TOP'){
+				y-=40;
+			}else if(input.value=='TRA RIG'){
+				x+=40;
+			}else if(input.value=='TRA BOT'){
+				y+=40;
+			}else if(input.value=='MOV LEF'){
+				x-=40;
+				str1=4;
+			}else if(input.value=='MOV TOP'){
+				y+=40;
+				str1=1;
+			}else if(input.value=='MOV RIG'){
+				x+=40;
+				str1=2;
+			}else if(input.value=='MOV BOT'){
+				y+=40;
+				str1=3;
+			}
+			if(x<0||y<0||x>360||y>360){
+				return false;
+			}
+			x+='px';
+			y+='px';
+			document.getElementById('img').style.left=x;
+			document.getElementById('img').style.top=y;
+
+
+
+	/*
+			if(input.value=='LEFT'){
+				str1--;
+				if(str1==0){str1=4;}
+			}else if(input.value=='RIGHT'){
+				str1++;
+				if(str1==5){str1=1;}
+			}else if(input.value=='BACK'){
+				if(str1==3){str1=1;}
+				else if(str1==4){str1=2;}
+				else{str1+=2;}
+			}else if(input.value=='GO'){
+				if(str1==1){
+					y-=20;
+				}else if(str1==2){
+					x+=20;
+				}else if(str1==3){
+					y+=20;
+				}else{
+					x-=20;
+				}
+				if(x<0||y<0||x>260||y>260){
+					return false;
+				}
+				x+='px';
+				y+='px';
+				document.getElementById('img').style.left=x;
+				document.getElementById('img').style.top=y;
+			}*/
+			str1=str1+'.jpg';
+			str=str.replace(/\d\.jpg/,str1);
+			document.getElementById('img').src=str;
+		}
+	</script>
+</body>
+</html>
